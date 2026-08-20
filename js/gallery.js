@@ -51,11 +51,29 @@ function initUpload() {
 
     selectedFilesQueue = valid;
     renderPreview(valid);
-    uploadFiles(valid);
+
+    // Show the Upload button instead of uploading immediately
+    const uploadBtn = document.getElementById("uploadConfirmBtn");
+    const resultBox = document.getElementById("uploadResult");
+    if (uploadBtn) {
+      uploadBtn.style.display = "inline-block";
+      uploadBtn.disabled = false;
+      uploadBtn.innerText = `⬆️ Upload (${valid.length})`;
+    }
+    if (resultBox) resultBox.innerHTML = "";
 
     // reset input so selecting the same file again re-triggers change
     this.value = "";
   });
+
+  const uploadBtn = document.getElementById("uploadConfirmBtn");
+  if (uploadBtn) {
+    uploadBtn.addEventListener("click", () => {
+      if (selectedFilesQueue.length === 0) return;
+      uploadBtn.disabled = true;
+      uploadFiles(selectedFilesQueue);
+    });
+  }
 }
 
 function renderPreview(files) {
@@ -165,8 +183,29 @@ async function uploadFiles(files) {
 
   if (progressBox) progressBox.style.display = "none";
 
-  if (done > 0) showToast(`Upload successful (${done} image${done > 1 ? "s" : ""})`, "success");
-  if (failed > 0) showToast(`Upload failed for ${failed} file(s)`, "error");
+  const uploadBtn = document.getElementById("uploadConfirmBtn");
+  const resultBox = document.getElementById("uploadResult");
+
+  if (done > 0) {
+    showToast(`Upload successful (${done} image${done > 1 ? "s" : ""})`, "success");
+    if (resultBox) {
+      resultBox.innerHTML = `<div class="upload-success">✅ Upload successful! ${done} photo${done > 1 ? "s" : ""} added to the gallery.</div>`;
+    }
+  }
+  if (failed > 0) {
+    showToast(`Upload failed for ${failed} file(s)`, "error");
+    if (resultBox) {
+      resultBox.innerHTML += `<div class="upload-error">⚠️ ${failed} file${failed > 1 ? "s" : ""} failed to upload.</div>`;
+    }
+  }
+
+  // Reset the upload button + queue so the next selection starts fresh
+  selectedFilesQueue = [];
+  if (uploadBtn) {
+    uploadBtn.style.display = "none";
+    uploadBtn.disabled = false;
+    uploadBtn.innerText = "⬆️ Upload";
+  }
 
   galleryPage = 0;
   loadGalleryPage(true);
@@ -418,4 +457,4 @@ function escapeHtml(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
-                             }
+       }
