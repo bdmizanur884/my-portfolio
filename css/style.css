@@ -94,7 +94,15 @@ section{scroll-margin-top:80px;}
 .upload-btn{display:inline-block;padding:13px 25px;background:linear-gradient(135deg,#7c3aed,#a855f7);border-radius:12px;font-weight:bold;cursor:pointer;box-shadow:0 8px 25px rgba(124,58,237,.3);transition:.2s;}
 .upload-btn:active{transform:scale(.97);}
 #fileInput{display:none;}
+
+.upload-confirm-btn{margin-top:14px;padding:12px 26px;border-radius:12px;font-weight:bold;font-size:14px;border:0;cursor:pointer;background:linear-gradient(135deg,#22a35e,#3fae6a);color:#fff;box-shadow:0 8px 25px rgba(63,174,106,.3);}
+.upload-confirm-btn:disabled{opacity:.6;cursor:not-allowed;}
+
 #uploadProgress{display:none;margin-top:14px;color:#c3ccdd;font-size:13px;}
+
+#uploadResult{margin-top:14px;}
+.upload-success{background:rgba(63,174,106,.12);border:1px solid #3fae6a;color:#c8f0d8;padding:12px 16px;border-radius:10px;font-size:14px;margin-bottom:8px;}
+.upload-error{background:rgba(224,90,110,.12);border:1px solid #e05a6e;color:#ffd7dc;padding:12px 16px;border-radius:10px;font-size:14px;}
 
 /* ================= PREVIEW FOLDER ================= */
 .preview-folder{margin-top:18px;background:linear-gradient(145deg,#17213b,#11192e);border:1px solid #34415f;border-radius:18px;padding:20px;display:flex;align-items:center;gap:18px;cursor:pointer;transition:.25s;}
@@ -218,4 +226,4 @@ footer a{color:#8b93ab;text-decoration:none;}
   .copy-btn{padding:9px;}
   #viewerPrev{left:6px;}
   #viewerNext{right:6px;}
-                 }
+               }
