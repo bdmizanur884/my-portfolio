@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PhotoShare Portfolio</title>
+<meta name="description" content="Personal e-portfolio, photography and public photo gallery.">
+<meta property="og:title" content="PhotoShare Portfolio">
+<meta property="og:description" content="Personal e-portfolio, photography and public photo gallery.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="offlineBanner">⚠️ No Internet Connection — showing cached content</div>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="nav">
+    <div class="logo">Photo<span>Share</span></div>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a href="admin/index.html">Admin</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main class="container" id="home">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <p class="hero-eyebrow">Hello, I'm</p>
+    <img class="profile-avatar" id="heroAvatar" src="https://api.dicebear.com/7.x/shapes/svg?seed=portfolio" alt="Profile">
+    <h1><span id="heroName">Your Name</span></h1>
+    <p id="heroProfession" style="color:#8b5cf6;font-weight:bold;margin-bottom:10px;">Creative Designer & Digital Creator</p>
+    <p id="heroDescription">I design and build clean digital experiences.</p>
+    <div class="hero-buttons">
+      <a href="#gallery" class="btn-primary">View Portfolio</a>
+      <a href="#contact" class="btn-secondary">Contact Me</a>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <div class="section-title"><h2>👤 About Me</h2></div>
+    <div class="about-grid">
+      <div class="about-card"><h4>Name</h4><p id="aboutName">—</p></div>
+      <div class="about-card"><h4>Profession</h4><p id="aboutProfession">—</p></div>
+      <div class="about-card"><h4>Location</h4><p id="aboutLocation">—</p></div>
+      <div class="about-card"><h4>Experience</h4><p id="aboutExperience">—</p></div>
+      <p class="about-bio" id="aboutBio"></p>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section id="skills">
+    <div class="section-title"><h2>🛠️ Skills</h2></div>
+    <div class="skills-grid" id="skillsGrid">
+      <div class="empty">Loading skills...</div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section id="services">
+    <div class="section-title"><h2>🧰 Services</h2></div>
+    <div class="services-grid" id="servicesGrid">
+      <div class="empty">Loading services...</div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section id="projects">
+    <div class="section-title"><h2>💼 Projects</h2></div>
+    <div class="projects-grid" id="projectsGrid">
+      <div class="empty">Loading projects...</div>
+    </div>
+  </section>
+
+  <!-- ================= UPLOAD ================= -->
+  <section>
+    <div class="section-title"><h2>📸 Share a Photo</h2></div>
+    <div class="upload-box">
+      <div class="upload-icon">📸</div>
+      <h2>Upload Photos</h2>
+      <p>Select one or multiple photos from your device (JPG, PNG, WEBP — max 8MB each)</p>
+      <div class="upload-category">
+        <select id="uploadCategory">
+          <option>Personal</option>
+          <option>Photography</option>
+          <option>Design</option>
+          <option>Nature</option>
+          <option>Projects</option>
+        </select>
+      </div>
+      <label class="upload-btn" for="fileInput">📤 Choose Photos</label>
+      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple>
+      <div id="uploadProgress"></div>
+    </div>
+  </section>
+
+  <!-- ================= PREVIEW FOLDER ================= -->
+  <section>
+    <div class="preview-folder" id="previewFolder">
+      <div class="folder-icon">📁</div>
+      <div class="folder-info">
+        <h3>Preview</h3>
+        <p id="folderText">কোনো ছবি নির্বাচন করা হয়নি</p>
+      </div>
+      <div class="folder-arrow">›</div>
+    </div>
+
+    <div id="previewPanel">
+      <div class="preview-header">
+        <h2>👀 Photo Preview</h2>
+        <button class="close-preview" id="closePreview">Close</button>
+      </div>
+      <div class="preview-grid" id="previewGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY ================= -->
+  <section id="gallery">
+    <div class="section-title">
+      <h2>🖼️ Public Gallery</h2>
+      <div class="count" id="photoCount">0 Photos</div>
+    </div>
+
+    <div class="gallery-controls">
+      <input type="text" class="search-box" id="gallerySearch" placeholder="Search photos by name...">
+    </div>
+    <div class="filter-row" style="margin-bottom:18px;">
+      <button class="filter-btn active" data-category="All">All</button>
+      <button class="filter-btn" data-category="Photography">Photography</button>
+      <button class="filter-btn" data-category="Design">Design</button>
+      <button class="filter-btn" data-category="Nature">Nature</button>
+      <button class="filter-btn" data-category="Projects">Projects</button>
+      <button class="filter-btn" data-category="Personal">Personal</button>
+    </div>
+
+    <div class="gallery" id="galleryBox"></div>
+    <button class="load-more-btn" id="loadMoreBtn">Load More</button>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact">
+    <div class="section-title"><h2>✉️ Contact</h2></div>
+    <div class="contact-grid">
+      <form class="contact-form" id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="subject" placeholder="Subject">
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <div class="contact-info">
+        <h4>Email</h4>
+        <p id="contactEmailDisplay">—</p>
+        <h4>Phone</h4>
+        <p id="contactPhoneDisplay">—</p>
+        <h4>Social</h4>
+        <div class="social-links">
+          <a id="linkFacebook" href="#" target="_blank" rel="noopener" style="display:none;">Facebook</a>
+          <a id="linkInstagram" href="#" target="_blank" rel="noopener" style="display:none;">Instagram</a>
+          <a id="linkYoutube" href="#" target="_blank" rel="noopener" style="display:none;">YouTube</a>
+          <a id="linkTiktok" href="#" target="_blank" rel="noopener" style="display:none;">TikTok</a>
+          <a id="linkGithub" href="#" target="_blank" rel="noopener" style="display:none;">GitHub</a>
+          <a id="linkLinkedin" href="#" target="_blank" rel="noopener" style="display:none;">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  PhotoShare Portfolio · <a href="admin/index.html">Admin Login</a>
+  <br><br>
+  © 2026 All Rights Reserved
+</footer>
+
+<!-- ================= IMAGE VIEWER ================= -->
+<div class="viewer" id="viewer">
+  <div class="close" id="closeViewer">×</div>
+  <button class="viewer-nav" id="viewerPrev">‹</button>
+  <img id="viewerImage" src="" alt="Full Image">
+  <button class="viewer-nav" id="viewerNext">›</button>
+</div>
+
+<!-- ================= DELETE REQUEST POPUP ================= -->
+<div class="request-box" id="requestBox">
+  <div class="request-card">
+    <h2>🗑️ Delete Request</h2>
+    <p>
+      আপনি কি এই ছবিটি Delete করার জন্য Admin-এর কাছে Request পাঠাতে চান?
+      <br><br>
+      Admin Request দেখে ছবিটি Delete করবেন।
+    </p>
+    <div class="request-buttons">
+      <button class="cancel-request" id="cancelRequest">Cancel</button>
+      <button class="confirm-request" id="confirmRequest">Send Request</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/main.js"></script>
+<script src="js/gallery.js"></script>
+</body>
+                                  </html>
