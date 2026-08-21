@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin Dashboard — PhotoShare Portfolio</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="offlineBanner">⚠️ No Internet Connection</div>
+
+<!-- ================= ADMIN HEADER ================= -->
+<header>
+  <div class="nav">
+    <div class="logo">Photo<span>Share</span> <span style="color:#8f9ab0;font-size:13px;font-weight:normal;">/ Admin</span></div>
+    <div>
+      <a href="../index.html" style="color:#ddd;text-decoration:none;font-size:13px;margin-right:14px;">View Site</a>
+      <button id="logoutBtn" class="btn-small" style="border:0;">Logout</button>
+    </div>
+  </div>
+</header>
+
+<div class="admin-layout">
+
+  <!-- ================= SIDEBAR ================= -->
+  <nav class="admin-sidebar" id="adminSidebar">
+    <button class="admin-nav-btn active" data-section="overview">📊 Dashboard</button>
+    <button class="admin-nav-btn" data-section="profile">👤 Profile</button>
+    <button class="admin-nav-btn" data-section="skills">🛠️ Skills</button>
+    <button class="admin-nav-btn" data-section="services">🧰 Services</button>
+    <button class="admin-nav-btn" data-section="projects">💼 Projects</button>
+    <button class="admin-nav-btn" data-section="gallery">🖼️ Gallery</button>
+    <button class="admin-nav-btn" data-section="deleteRequests">🗑️ Delete Requests</button>
+    <button class="admin-nav-btn" data-section="messages">✉️ Messages</button>
+    <button class="admin-nav-btn" data-section="settings">⚙️ Settings</button>
+  </nav>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="admin-main">
+
+    <!-- ---------------- OVERVIEW ---------------- -->
+    <section class="admin-section active" id="section-overview">
+      <h2>Dashboard Overview</h2>
+      <div class="overview-grid">
+        <div class="overview-card"><div class="overview-num" id="statPhotos">—</div><div>Total Photos</div></div>
+        <div class="overview-card"><div class="overview-num" id="statProjects">—</div><div>Total Projects</div></div>
+        <div class="overview-card"><div class="overview-num" id="statMessages">—</div><div>Total Messages</div></div>
+        <div class="overview-card"><div class="overview-num" id="statPending">—</div><div>Pending Delete Requests</div></div>
+      </div>
+    </section>
+
+    <!-- ---------------- PROFILE ---------------- -->
+    <section class="admin-section" id="section-profile">
+      <h2>Profile / About</h2>
+      <form id="profileForm" class="admin-form">
+        <label>Name</label>
+        <input type="text" name="name" required>
+        <label>Profession / Title</label>
+        <input type="text" name="profession">
+        <label>Location</label>
+        <input type="text" name="location">
+        <label>Experience</label>
+        <input type="text" name="experience" placeholder="e.g. 3+ years">
+        <label>Avatar Image URL</label>
+        <input type="url" name="avatar_url" placeholder="https://...">
+        <label>Hero short description</label>
+        <textarea name="hero_description" rows="2"></textarea>
+        <label>Full Bio</label>
+        <textarea name="bio" rows="5"></textarea>
+        <button type="submit">Save Profile</button>
+      </form>
+    </section>
+
+    <!-- ---------------- SKILLS ---------------- -->
+    <section class="admin-section" id="section-skills">
+      <h2>Skills</h2>
+      <form id="skillForm" class="admin-form admin-inline-form">
+        <input type="text" name="name" placeholder="Skill name" required>
+        <input type="number" name="level" placeholder="Level %" min="0" max="100" value="80">
+        <button type="submit">Add Skill</button>
+      </form>
+      <div class="admin-list" id="skillsList"></div>
+    </section>
+
+    <!-- ---------------- SERVICES ---------------- -->
+    <section class="admin-section" id="section-services">
+      <h2>Services</h2>
+      <form id="serviceForm" class="admin-form">
+        <label>Icon (emoji)</label>
+        <input type="text" name="icon" placeholder="⭐" maxlength="4">
+        <label>Title</label>
+        <input type="text" name="title" required>
+        <label>Description</label>
+        <textarea name="description" rows="2"></textarea>
+        <button type="submit">Add Service</button>
+      </form>
+      <div class="admin-list" id="servicesList"></div>
+    </section>
+
+    <!-- ---------------- PROJECTS ---------------- -->
+    <section class="admin-section" id="section-projects">
+      <h2>Projects</h2>
+      <form id="projectForm" class="admin-form">
+        <label>Title</label>
+        <input type="text" name="title" required>
+        <label>Description</label>
+        <textarea name="description" rows="2"></textarea>
+        <label>Technology</label>
+        <input type="text" name="tech" placeholder="React, Node.js...">
+        <label>Image URL</label>
+        <input type="url" name="image_url" placeholder="https://...">
+        <label>Live Demo URL</label>
+        <input type="url" name="demo_url">
+        <label>Source Code URL</label>
+        <input type="url" name="source_url">
+        <button type="submit">Add Project</button>
+      </form>
+      <div class="admin-list" id="projectsList"></div>
+    </section>
+
+    <!-- ---------------- GALLERY ---------------- -->
+    <section class="admin-section" id="section-gallery">
+      <h2>Gallery Moderation</h2>
+      <p style="color:#8f9ab0;font-size:13px;margin-bottom:14px;">Delete inappropriate photos or fix their category/caption.</p>
+      <div class="admin-gallery-grid" id="adminGalleryGrid"></div>
+    </section>
+
+    <!-- ---------------- DELETE REQUESTS ---------------- -->
+    <section class="admin-section" id="section-deleteRequests">
+      <h2>Delete Requests</h2>
+      <div class="admin-list" id="deleteRequestsList"></div>
+    </section>
+
+    <!-- ---------------- MESSAGES ---------------- -->
+    <section class="admin-section" id="section-messages">
+      <h2>Contact Messages</h2>
+      <div class="admin-list" id="messagesList"></div>
+    </section>
+
+    <!-- ---------------- SETTINGS ---------------- -->
+    <section class="admin-section" id="section-settings">
+      <h2>Website Settings</h2>
+      <form id="settingsForm" class="admin-form">
+        <label>Site Title</label>
+        <input type="text" name="site_title">
+        <label>Contact Email</label>
+        <input type="email" name="contact_email">
+        <label>Contact Phone</label>
+        <input type="text" name="contact_phone">
+        <label>Facebook URL</label>
+        <input type="url" name="social_facebook">
+        <label>Instagram URL</label>
+        <input type="url" name="social_instagram">
+        <label>YouTube URL</label>
+        <input type="url" name="social_youtube">
+        <label>TikTok URL</label>
+        <input type="url" name="social_tiktok">
+        <label>GitHub URL</label>
+        <input type="url" name="social_github">
+        <label>LinkedIn URL</label>
+        <input type="url" name="social_linkedin">
+        <button type="submit">Save Settings</button>
+      </form>
+    </section>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/supabase-client.js"></script>
+<script src="../js/toast.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/admin.js"></script>
+</body>
+  </html>
