@@ -205,6 +205,56 @@ section{scroll-margin-top:80px;}
 footer{margin-top:50px;padding:25px 15px;text-align:center;background:#080c17;color:#68748b;font-size:13px;}
 footer a{color:#8b93ab;text-decoration:none;}
 
+/* ================= ADMIN LOGIN ================= */
+.admin-login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+.admin-login-card{width:100%;max-width:360px;background:linear-gradient(145deg,#17213b,#11192e);border:1px solid #34415f;border-radius:20px;padding:30px 25px;text-align:center;}
+
+/* ================= ADMIN LAYOUT ================= */
+.admin-layout{display:flex;max-width:1200px;margin:0 auto;min-height:calc(100vh - 64px);}
+.admin-sidebar{width:220px;flex-shrink:0;background:#0d1326;border-right:1px solid #232d47;padding:16px 10px;display:flex;flex-direction:column;gap:4px;}
+.admin-nav-btn{background:none;border:0;color:#c3ccdd;text-align:left;padding:11px 14px;border-radius:10px;font-size:14px;cursor:pointer;}
+.admin-nav-btn:hover{background:#1a2340;}
+.admin-nav-btn.active{background:#7c3aed;color:#fff;}
+.admin-main{flex:1;padding:24px 20px;min-width:0;}
+.admin-main h2{margin-bottom:18px;font-size:20px;}
+
+.admin-section{display:none;}
+.admin-section.active{display:block;}
+
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;}
+.overview-card{background:#151d34;border:1px solid #263452;border-radius:14px;padding:20px;text-align:center;}
+.overview-num{font-size:28px;font-weight:bold;color:#a855f7;margin-bottom:6px;}
+
+.admin-form{display:flex;flex-direction:column;gap:10px;max-width:480px;margin-bottom:24px;}
+.admin-form label{font-size:12px;color:#8b93ab;text-transform:uppercase;letter-spacing:.04em;margin-top:4px;}
+.admin-form input,.admin-form textarea{background:#151d34;border:1px solid #35415c;border-radius:10px;padding:11px;color:#fff;font-size:14px;outline:none;font-family:inherit;}
+.admin-form input:focus,.admin-form textarea:focus{border-color:#8b5cf6;}
+.admin-form button{margin-top:8px;padding:12px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:0;font-weight:bold;cursor:pointer;}
+.admin-inline-form{flex-direction:row;flex-wrap:wrap;align-items:center;max-width:none;}
+.admin-inline-form input{flex:1;min-width:120px;}
+.admin-inline-form button{margin-top:0;padding:11px 18px;white-space:nowrap;}
+
+.admin-list{display:flex;flex-direction:column;gap:10px;}
+.admin-list-item{background:#151d34;border:1px solid #263452;border-radius:12px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.admin-list-item .delete-request,.admin-list-item .btn-small{flex:none;width:auto;}
+
+.status-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;text-transform:uppercase;}
+.status-pending{background:rgba(230,180,60,.15);color:#e6c56a;}
+.status-approved{background:rgba(63,174,106,.15);color:#7fd9a0;}
+.status-rejected{background:rgba(224,90,110,.15);color:#ff9daa;}
+
+.admin-gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;}
+.admin-photo-card{background:#151d34;border-radius:13px;padding:8px;text-align:center;}
+.admin-photo-card img{width:100%;height:130px;object-fit:cover;border-radius:9px;margin-bottom:8px;}
+.admin-photo-meta{font-size:12px;color:#c3ccdd;margin-bottom:8px;word-break:break-word;}
+.admin-photo-card .delete-request{width:100%;}
+
+@media(max-width:800px){
+  .admin-layout{flex-direction:column;}
+  .admin-sidebar{width:100%;flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid #232d47;}
+  .admin-nav-btn{white-space:nowrap;}
+}
+
 /* ================= MOBILE ================= */
 @media(max-width:700px){
   .nav-menu{position:fixed;top:63px;left:0;right:0;background:#0b1020;flex-direction:column;align-items:flex-start;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.08);display:none;}
@@ -226,4 +276,4 @@ footer a{color:#8b93ab;text-decoration:none;}
   .copy-btn{padding:9px;}
   #viewerPrev{left:6px;}
   #viewerNext{right:6px;}
-               }
+}
