@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Profile — PhotoShare Portfolio</title>
+<meta name="description" content="Profile, skills, services and projects.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="offlineBanner">⚠️ No Internet Connection — showing cached content</div>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="nav">
+    <div class="logo">Photo<span>Share</span></div>
+    <nav class="nav-menu" id="navMenu">
+      <a href="index.html">Home</a>
+      <a href="profile.html">Profile</a>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="admin/index.html">Admin</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ================= PROFILE HEADER ================= -->
+  <section class="hero" style="padding-top:35px;">
+    <img class="profile-avatar" id="heroAvatar" src="https://api.dicebear.com/7.x/shapes/svg?seed=portfolio" alt="Profile">
+    <h1 id="heroName" style="font-size:28px;">Your Name</h1>
+    <p id="heroProfession" style="color:#8b5cf6;font-weight:bold;">Creative Designer & Digital Creator</p>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <div class="section-title"><h2>👤 About Me</h2></div>
+    <div class="about-grid">
+      <div class="about-card"><h4>Name</h4><p id="aboutName">—</p></div>
+      <div class="about-card"><h4>Profession</h4><p id="aboutProfession">—</p></div>
+      <div class="about-card"><h4>Location</h4><p id="aboutLocation">—</p></div>
+      <div class="about-card"><h4>Experience</h4><p id="aboutExperience">—</p></div>
+      <p class="about-bio" id="aboutBio"></p>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section id="skills">
+    <div class="section-title"><h2>🛠️ Skills</h2></div>
+    <div class="skills-grid" id="skillsGrid">
+      <div class="empty">Loading skills...</div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section id="services">
+    <div class="section-title"><h2>🧰 Services</h2></div>
+    <div class="services-grid" id="servicesGrid">
+      <div class="empty">Loading services...</div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section id="projects">
+    <div class="section-title"><h2>💼 Projects</h2></div>
+    <div class="projects-grid" id="projectsGrid">
+      <div class="empty">Loading projects...</div>
+    </div>
+  </section>
+
+  <div style="text-align:center;margin:40px 0;">
+    <a href="index.html#gallery" class="btn-secondary">🖼️ View Gallery</a>
+  </div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  PhotoShare Portfolio · <a href="admin/index.html">Admin Login</a>
+  <br><br>
+  © 2026 All Rights Reserved
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/main.js"></script>
+</body>
+  </html>
