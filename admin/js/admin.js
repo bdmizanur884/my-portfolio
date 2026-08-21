@@ -316,17 +316,25 @@ function initGalleryModeration() {
         btn.addEventListener("click", async () => {
           if (!confirm("Delete this photo from the public gallery?")) return;
           try {
-            const { error } = await supabaseClient
+            const { data: updated, error } = await supabaseClient
               .from("gallery")
               .update({ status: "deleted" })
-              .eq("id", btn.dataset.galleryId);
+              .eq("id", btn.dataset.galleryId)
+              .select();
+
             if (error) throw error;
+
+            if (!updated || updated.length === 0) {
+              showToast("Delete blocked — please log out and log back in, then try again", "error");
+              return;
+            }
+
             showToast("Image deleted", "success");
             loadAdminGallery();
             loadOverviewStats();
           } catch (err) {
             console.error(err);
-            showToast("Failed to delete image", "error");
+            showToast("Failed to delete image: " + (err.message || "unknown error"), "error");
           }
         });
       });
@@ -383,14 +391,30 @@ function initDeleteRequests() {
       list.querySelectorAll("[data-approve]").forEach((btn) => {
         btn.addEventListener("click", async () => {
           try {
-            await supabaseClient.from("gallery").update({ status: "deleted" }).eq("id", btn.dataset.gallery);
-            await supabaseClient.from("delete_requests").update({ status: "approved" }).eq("id", btn.dataset.approve);
+            const { data: updated, error: galleryErr } = await supabaseClient
+              .from("gallery")
+              .update({ status: "deleted" })
+              .eq("id", btn.dataset.gallery)
+              .select();
+            if (galleryErr) throw galleryErr;
+
+            if (!updated || updated.length === 0) {
+              showToast("Approve blocked — please log out and log back in, then try again", "error");
+              return;
+            }
+
+            const { error: reqErr } = await supabaseClient
+              .from("delete_requests")
+              .update({ status: "approved" })
+              .eq("id", btn.dataset.approve);
+            if (reqErr) throw reqErr;
+
             showToast("Delete request approved — image removed", "success");
             loadRequests();
             loadOverviewStats();
           } catch (err) {
             console.error(err);
-            showToast("Failed to approve request", "error");
+            showToast("Failed to approve request: " + (err.message || "unknown error"), "error");
           }
         });
       });
@@ -539,4 +563,4 @@ function escapeHtml(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
-}
+         }
